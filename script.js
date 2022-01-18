@@ -33,7 +33,8 @@ let setIsNumbersAllowed = () => {
 let generatePassword = () => {
   setPasswordLength();
   setIsSymbolsAllowed();
-
+  setIsNumbersAllowed();
+  console.log(passwordLength + " " + isSybolsAllowed + " " + isNumbersAllowed);
 }
 
 // Write password to the #password input
