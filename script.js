@@ -4,6 +4,8 @@ let passwordLength = 0;
 let isSybolsAllowed = false;
 let isNumbersAllowed = false;
 
+
+//sets the length of the password you would like to generate
 let setPasswordLength = () => {
   passwordLength = prompt('Length\nHow many characters would you like your password to be?\n(type an integer between 8-128)');
   if (passwordLength >= 8 && passwordLength <= 128) {
@@ -15,6 +17,7 @@ let setPasswordLength = () => {
   }
 }
 
+//pulls all of the functions together to generate the password
 let generatePassword = () => {
   setPasswordLength();
 
