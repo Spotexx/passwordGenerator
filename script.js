@@ -4,6 +4,7 @@ let passwordLength = 0;
 let isSymbolsAllowed = false;
 let isNumbersAllowed = false;
 let availableCharacters = [];
+let password = "";
 
 //sets the length of the password you would like to generate
 let setPasswordLength = () => {
@@ -56,13 +57,16 @@ let generatePassword = () => {
   console.log(passwordLength + " " + isSymbolsAllowed + " " + isNumbersAllowed);
   setAvailableCharacters();
   console.log(availableCharacters);
-  console.log(generateCharacter());
+  for(let i = 0; i < passwordLength; i++) {
+    password += generateCharacter();
+  }
+  console.log(password);
   availableCharacters = [];
 }
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
