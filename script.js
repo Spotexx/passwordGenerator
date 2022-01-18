@@ -17,6 +17,12 @@ let setPasswordLength = () => {
   }
 }
 
+//sets if the user would like to include symbols in their password
+let setIsSymbolsAllowed = () => {
+  isSybolsAllowed = confirm('Would you like to include symbols in your password?\n(Click "OK" for yes or "Cancel" for no)');
+  return(isSybolsAllowed);
+}
+
 //pulls all of the functions together to generate the password
 let generatePassword = () => {
   setPasswordLength();
