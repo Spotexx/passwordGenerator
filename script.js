@@ -1,9 +1,9 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 let passwordLength = 0;
-let isSybolsAllowed = false;
+let isSymbolsAllowed = false;
 let isNumbersAllowed = false;
-
+let availableCharacters = [];
 
 //sets the length of the password you would like to generate
 let setPasswordLength = () => {
@@ -19,8 +19,8 @@ let setPasswordLength = () => {
 
 //sets if the user would like to include symbols in their password
 let setIsSymbolsAllowed = () => {
-  isSybolsAllowed = confirm('Would you like to include symbols in your password?\n(Click "OK" for yes or "Cancel" for no)');
-  return(isSybolsAllowed);
+  isSymbolsAllowed = confirm('Would you like to include symbols in your password?\n(Click "OK" for yes or "Cancel" for no)');
+  return(isSymbolsAllowed);
 }
 
 //sets if the user would like to include numbers in their password
