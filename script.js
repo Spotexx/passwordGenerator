@@ -7,7 +7,7 @@ let availableCharacters = [];
 let password = "";
 
 //sets the length of the password you would like to generate
-let setPasswordLength = () => {
+let askPasswordLength = () => {
   passwordLength = prompt('Length\nHow many characters would you like your password to be?\n(type an integer between 8-128)');
   if (passwordLength >= 8 && passwordLength <= 128) {
     passwordLength = parseInt(passwordLength);
@@ -19,19 +19,19 @@ let setPasswordLength = () => {
 }
 
 //sets if the user would like to include symbols in their password
-let setIsSymbolsAllowed = () => {
+let askIsSymbolsAllowed = () => {
   isSymbolsAllowed = confirm('Would you like to include symbols in your password?\n(Click "OK" for yes or "Cancel" for no)');
   return isSymbolsAllowed;
 }
 
 //sets if the user would like to include numbers in their password
-let setIsNumbersAllowed = () => {
+let askIsNumbersAllowed = () => {
   isNumbersAllowed = confirm('Would you like to include numbers in your password?\n(Click "OK" for yes or "Cancel" for no)');
   return isNumbersAllowed ;
 }
 
 //set available characters for password
-let setAvailableCharacters = () => {
+let askAvailableCharacters = () => {
   availableCharacters.push("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
   availableCharacters.push("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
   if(isSymbolsAllowed) {
@@ -51,11 +51,11 @@ function generateCharacter() {
 
 //pulls all of the functions together to generate the password
 let generatePassword = () => {
-  setPasswordLength();
-  setIsSymbolsAllowed();
-  setIsNumbersAllowed();
+  askPasswordLength();
+  askIsSymbolsAllowed();
+  askIsNumbersAllowed();
   console.log(passwordLength + " " + isSymbolsAllowed + " " + isNumbersAllowed);
-  setAvailableCharacters();
+  askAvailableCharacters();
   console.log(availableCharacters);
   for(let i = 0; i < passwordLength; i++) {
     password += generateCharacter();
