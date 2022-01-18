@@ -70,6 +70,7 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+  password= "";
 
 }
 
