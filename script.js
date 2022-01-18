@@ -47,8 +47,10 @@ let generatePassword = () => {
   setPasswordLength();
   setIsSymbolsAllowed();
   setIsNumbersAllowed();
-  console.log(passwordLength + " " + isSybolsAllowed + " " + isNumbersAllowed);
+  console.log(passwordLength + " " + isSymbolsAllowed + " " + isNumbersAllowed);
   setAvailableCharacters();
+  console.log(availableCharacters);
+  availableCharacters = [];
 }
 
 // Write password to the #password input
