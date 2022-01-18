@@ -11,7 +11,7 @@ let setPasswordLength = () => {
   passwordLength = prompt('Length\nHow many characters would you like your password to be?\n(type an integer between 8-128)');
   if (passwordLength >= 8 && passwordLength <= 128) {
     passwordLength = parseInt(passwordLength);
-    return(passwordLength);
+    return passwordLength;
   } else {
     alert("Password length must be an integer between 8 and 128");
     setPasswordLength();
@@ -21,13 +21,13 @@ let setPasswordLength = () => {
 //sets if the user would like to include symbols in their password
 let setIsSymbolsAllowed = () => {
   isSymbolsAllowed = confirm('Would you like to include symbols in your password?\n(Click "OK" for yes or "Cancel" for no)');
-  return(isSymbolsAllowed);
+  return isSymbolsAllowed;
 }
 
 //sets if the user would like to include numbers in their password
 let setIsNumbersAllowed = () => {
   isNumbersAllowed = confirm('Would you like to include numbers in your password?\n(Click "OK" for yes or "Cancel" for no)');
-  return(isNumbersAllowed);
+  return isNumbersAllowed ;
 }
 
 //set available characters for password
@@ -66,7 +66,7 @@ let generatePassword = () => {
 
 // Write password to the #password input
 function writePassword() {
-  password = generatePassword();
+  generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
