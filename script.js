@@ -42,6 +42,12 @@ let setAvailableCharacters = () => {
   return
 }
 
+//generate characters for password
+function generateCharacter() {
+  let randomIndex = Math.floor(Math.random() * availableCharacters.length);
+  return availableCharacters[randomIndex];
+}
+
 //pulls all of the functions together to generate the password
 let generatePassword = () => {
   setPasswordLength();
@@ -50,6 +56,7 @@ let generatePassword = () => {
   console.log(passwordLength + " " + isSymbolsAllowed + " " + isNumbersAllowed);
   setAvailableCharacters();
   console.log(availableCharacters);
+  console.log(generateCharacter());
   availableCharacters = [];
 }
 
