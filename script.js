@@ -8,7 +8,7 @@ let password = "";
 
 //checks if value is an integer
 let isInteger = (num) => {
-  if (typeof num === "number") {
+  if (typeof parseInt(num) === "number") {
     return true;
   } else {
     return false;
