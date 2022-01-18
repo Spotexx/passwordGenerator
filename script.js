@@ -34,61 +34,65 @@ let askPasswordLength = () => {
   }
 }
 
-  //sets if the user would like to include symbols in their password
-  let askIsSymbolsAllowed = () => {
-    isSymbolsAllowed = confirm('Would you like to include symbols in your password?\n(Click "OK" for yes or "Cancel" for no)');
-    return isSymbolsAllowed;
+//sets if the user would like to include symbols in their password
+let askIsSymbolsAllowed = () => {
+  isSymbolsAllowed = confirm('Would you like to include symbols in your password?\n(Click "OK" for yes or "Cancel" for no)');
+  return isSymbolsAllowed;
+}
+
+//sets if the user would like to include numbers in their password
+let askIsNumbersAllowed = () => {
+  isNumbersAllowed = confirm('Would you like to include numbers in your password?\n(Click "OK" for yes or "Cancel" for no)');
+  return isNumbersAllowed;
+}
+
+//set available characters for password
+let askAvailableCharacters = () => {
+  availableCharacters.push("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
+  availableCharacters.push("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
+  if (isSymbolsAllowed) {
+    availableCharacters.push("!", "@", "#", "$", "%", "^", "&", "*", "-", "_", "+", "=", "[", "]", "{", "}", ";", ":", "'", ",", "<", ".", ">", "/", "?");
   }
-
-  //sets if the user would like to include numbers in their password
-  let askIsNumbersAllowed = () => {
-    isNumbersAllowed = confirm('Would you like to include numbers in your password?\n(Click "OK" for yes or "Cancel" for no)');
-    return isNumbersAllowed;
+  if (isNumbersAllowed) {
+    availableCharacters.push("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
   }
+  return
+}
 
-  //set available characters for password
-  let askAvailableCharacters = () => {
-    availableCharacters.push("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
-    availableCharacters.push("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
-    if (isSymbolsAllowed) {
-      availableCharacters.push("!", "@", "#", "$", "%", "^", "&", "*", "-", "_", "+", "=", "[", "]", "{", "}", ";", ":", "'", ",", "<", ".", ">", "/", "?");
-    }
-    if (isNumbersAllowed) {
-      availableCharacters.push("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
-    }
-    return
+//generate characters for password
+function generateCharacter() {
+  let randomIndex = Math.floor(Math.random() * availableCharacters.length);
+  return availableCharacters[randomIndex];
+}
+//generates the password string
+let generateString = () => {
+  for (let i = 0; i < passwordLength; i++) {
+    password += generateCharacter();
   }
+}
 
-  //generate characters for password
-  function generateCharacter() {
-    let randomIndex = Math.floor(Math.random() * availableCharacters.length);
-    return availableCharacters[randomIndex];
-  }
+//pulls all of the functions together to generate the password
+let generatePassword = () => {
+  askPasswordLength();
+  askIsSymbolsAllowed();
+  askIsNumbersAllowed();
+  console.log(passwordLength + " " + isSymbolsAllowed + " " + isNumbersAllowed);
+  askAvailableCharacters();
+  console.log(availableCharacters);
+  generateString();
+  console.log(password);
+  availableCharacters = [];
+}
 
-  //pulls all of the functions together to generate the password
-  let generatePassword = () => {
-    askPasswordLength();
-    askIsSymbolsAllowed();
-    askIsNumbersAllowed();
-    console.log(passwordLength + " " + isSymbolsAllowed + " " + isNumbersAllowed);
-    askAvailableCharacters();
-    console.log(availableCharacters);
-    for (let i = 0; i < passwordLength; i++) {
-      password += generateCharacter();
-    }
-    console.log(password);
-    availableCharacters = [];
-  }
+// Write password to the #password input
+function writePassword() {
+  generatePassword();
+  var passwordText = document.querySelector("#password");
 
-  // Write password to the #password input
-  function writePassword() {
-    generatePassword();
-    var passwordText = document.querySelector("#password");
+  passwordText.value = password;
+  password = "";
 
-    passwordText.value = password;
-    password = "";
+}
 
-  }
-
-  // Add event listener to generate button
-  generateBtn.addEventListener("click", writePassword);
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
