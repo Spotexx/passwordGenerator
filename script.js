@@ -23,6 +23,12 @@ let setIsSymbolsAllowed = () => {
   return(isSybolsAllowed);
 }
 
+//sets if the user would like to include numbers in their password
+let setIsNumbersAllowed = () => {
+  isNumbersAllowed = confirm('Would you like to include numbers in your password?\n(Click "OK" for yes or "Cancel" for no)');
+  return(isNumbersAllowed);
+}
+
 //pulls all of the functions together to generate the password
 let generatePassword = () => {
   setPasswordLength();
