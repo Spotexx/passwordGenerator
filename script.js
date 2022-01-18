@@ -26,6 +26,7 @@ let setIsSymbolsAllowed = () => {
 //pulls all of the functions together to generate the password
 let generatePassword = () => {
   setPasswordLength();
+  setIsSymbolsAllowed();
 
 }
 
