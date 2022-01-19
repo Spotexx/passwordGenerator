@@ -66,6 +66,7 @@ function generateCharacter() {
 }
 //generates the password string
 let generateString = () => {
+  password = "";
   for (let i = 0; i < passwordLength; i++) {
     password += generateCharacter();
   }
@@ -74,27 +75,23 @@ let generateString = () => {
 //checks if all allowed character types are used
 let isCharactersUsed = () => {
   //checks for letters must be either upper and lowercase
-  if(password.match(/[a-z]/g) && password.match(/[A-Z]/g)) {
-  } else {
+  if(!password.match(/[a-z]/g) || !password.match(/[A-Z]/g)) {
     generateString();
     isCharactersUsed();
   }
   //checks for symbols
   if (isSymbolsAllowed) {
-    if(password.match(/([!@#$%^&*-_+=[\]{};:',<.>/?])+/g)) {
-    } else {
+    if(!password.match(/([!@#$%^&*-_+=[\]{};:',<.>/?])+/g)) {
       generateString();
       isCharactersUsed();
     }
   }
   //checks for numbers
   if (isNumbersAllowed) {
-    if(password.match(/([0-9])+/g)) {
-    } else {
+    if(!password.match(/([0-9])+/g)) {
       generateString();
       isCharactersUsed();
     }
-    return
   }
 }
 
