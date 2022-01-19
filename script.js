@@ -88,7 +88,6 @@ let generateString = () => {
   for (let i = 0; i < passwordLength; i++) {
     password += generateCharacter();
   }
-  console.log(password.charAt(0));
   if (password.includes("undefined")) {
     password = "Please try again at least one character type is required";
   }
@@ -136,6 +135,9 @@ let generatePassword = () => {
   askAvailableCharacters();
   generateString();
   isCharactersUsed();
+  //notifies user of the types they selected
+  alert("Password settings: \nSymbols: " + isSymbolsAllowed + "\nNumbers: " + isNumbersAllowed + "\nUpper case letters: " + isUpperCaseAllowed + "\nLower case letters: " + isLowerCaseAllowed);
+
   availableCharacters = [];
 }
 
