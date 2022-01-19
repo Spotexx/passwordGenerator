@@ -71,6 +71,39 @@ let generateString = () => {
   }
 }
 
+//checks if all allowed character types are used
+let isCharactersUsed = () => {
+  //checks for letters must be either upper and lowercase
+  if(password.match(/[a-z]/g) && password.match(/[A-Z]/g)) {
+    console.log("match 0");
+  } else {
+    console.log("no match");
+    generateString();
+    isCharactersUsed();
+  }
+  //checks for symbols
+  if (isSymbolsAllowed) {
+    if(password.match(/([!@#$%^&*-_+=[\]{};:',<.>/?])+/g)) {
+      console.log("match 1")
+    } else {
+      console.log("no match 1")
+      generateString();
+      isCharactersUsed();
+    }
+  }
+  //checks for numbers
+  if (isNumbersAllowed) {
+    if(password.match(/([0-9])+/g)) {
+      console.log("match 2")
+    } else {
+      console.log("no match 2")
+      generateString();
+      isCharactersUsed();
+    }
+    return
+  }
+}
+
 //pulls all of the functions together to generate the password
 let generatePassword = () => {
   askPasswordLength();
@@ -80,6 +113,7 @@ let generatePassword = () => {
   askAvailableCharacters();
   console.log(availableCharacters);
   generateString();
+  isCharactersUsed();
   console.log(password);
   availableCharacters = [];
 }
