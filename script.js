@@ -3,6 +3,8 @@ var generateBtn = document.querySelector("#generate");
 let passwordLength = 0;
 let isSymbolsAllowed = false;
 let isNumbersAllowed = false;
+let isUpperCaseAllowed = false;
+let isLowerCaseAllowed = false;
 let availableCharacters = [];
 let password = "";
 
@@ -46,17 +48,32 @@ let askIsNumbersAllowed = () => {
   return isNumbersAllowed;
 }
 
+//sets if the user would like to include upper case letters in their password
+let askIsUpperCaseAllowed = () => {
+  isUpperCaseAllowed = confirm('Would you like to include upper case letters in your password?\n(Click "OK" for yes or "Cancel" for no)');
+  return isUpperCaseAllowed;
+}
+
+//sets if the user would like to include lower case letters in their password
+let askIsLowerCaseAllowed = () => {
+  isLowerCaseAllowed = confirm('Would you like to include lower case letters in your password?\n(Click "OK" for yes or "Cancel" for no)');
+  return isLowerCaseAllowed;
+}
+
 //set available characters for password
 let askAvailableCharacters = () => {
-  availableCharacters.push("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
-  availableCharacters.push("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
   if (isSymbolsAllowed) {
     availableCharacters.push("!", "@", "#", "$", "%", "^", "&", "*", "-", "_", "+", "=", "[", "]", "{", "}", ";", ":", "'", ",", "<", ".", ">", "/", "?");
   }
   if (isNumbersAllowed) {
     availableCharacters.push("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
   }
-  return
+  if (isUpperCaseAllowed) {
+    availableCharacters.push("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
+  }
+  if (isLowerCaseAllowed) {
+    availableCharacters.push("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
+  }
 }
 
 //generate characters for password
@@ -64,6 +81,7 @@ function generateCharacter() {
   let randomIndex = Math.floor(Math.random() * availableCharacters.length);
   return availableCharacters[randomIndex];
 }
+
 //generates the password string
 let generateString = () => {
   password = "";
@@ -74,11 +92,6 @@ let generateString = () => {
 
 //checks if all allowed character types are used
 let isCharactersUsed = () => {
-  //checks for letters must be either upper and lowercase
-  if(!password.match(/[a-z]/g) || !password.match(/[A-Z]/g)) {
-    generateString();
-    isCharactersUsed();
-  }
   //checks for symbols
   if (isSymbolsAllowed) {
     if(!password.match(/([!@#$%^&*-_+=[\]{};:',<.>/?])+/g)) {
@@ -93,6 +106,20 @@ let isCharactersUsed = () => {
       isCharactersUsed();
     }
   }
+  //checks for upper case letters
+  if (isUpperCaseAllowed) {
+    if(!password.match(/([A-Z])+/g)) {
+      generateString();
+      isCharactersUsed();
+    }
+  }
+  //checks for lower case letters
+  if (isLowerCaseAllowed) {
+    if(!password.match(/([a-z])+/g)) {
+      generateString();
+      isCharactersUsed();
+    }
+  }
 }
 
 //pulls all of the functions together to generate the password
@@ -100,6 +127,8 @@ let generatePassword = () => {
   askPasswordLength();
   askIsSymbolsAllowed();
   askIsNumbersAllowed();
+  askIsUpperCaseAllowed();
+  askIsLowerCaseAllowed();
   askAvailableCharacters();
   generateString();
   isCharactersUsed();
