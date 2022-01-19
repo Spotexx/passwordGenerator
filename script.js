@@ -88,34 +88,38 @@ let generateString = () => {
   for (let i = 0; i < passwordLength; i++) {
     password += generateCharacter();
   }
+  console.log(password.charAt(0));
+  if (password.includes("undefined")) {
+    password = "Please try again at least one character type is required";
+  }
 }
 
 //checks if all allowed character types are used
 let isCharactersUsed = () => {
   //checks for symbols
   if (isSymbolsAllowed) {
-    if(!password.match(/([!@#$%^&*-_+=[\]{};:',<.>/?])+/g)) {
+    if (!password.match(/([!@#$%^&*-_+=[\]{};:',<.>/?])+/g)) {
       generateString();
       isCharactersUsed();
     }
   }
   //checks for numbers
   if (isNumbersAllowed) {
-    if(!password.match(/([0-9])+/g)) {
+    if (!password.match(/([0-9])+/g)) {
       generateString();
       isCharactersUsed();
     }
   }
   //checks for upper case letters
   if (isUpperCaseAllowed) {
-    if(!password.match(/([A-Z])+/g)) {
+    if (!password.match(/([A-Z])+/g)) {
       generateString();
       isCharactersUsed();
     }
   }
   //checks for lower case letters
   if (isLowerCaseAllowed) {
-    if(!password.match(/([a-z])+/g)) {
+    if (!password.match(/([a-z])+/g)) {
       generateString();
       isCharactersUsed();
     }
