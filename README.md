@@ -8,4 +8,4 @@ This is a Password Generator that creates secure passwords for the user to their
 Make sure to click [here](https://spotexx.github.io/passwordGenerator/) to view the finished LIVE copy of the assignment.
 
 ## screenshot 
-![Password Generator screenshot](./images/screenshot.png)
+![Password Generator screenshot](./assets/images/screenshot.png)
